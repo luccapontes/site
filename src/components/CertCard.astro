@@ -3,18 +3,19 @@ interface Props {
   name: string;
   issuer: string;
   date: string;
-  type: 'tech' | 'biz';
+  type: 'tech' | 'biz' | 'soft';
 }
 
 const { name, issuer, date, type } = Astro.props;
 
-const typeLabel = type === 'tech' ? 'tech' : 'negócios';
+const typeLabel = type === 'tech' ? 'tech' : type === 'soft' ? 'soft skills' : 'negócios';
+const badgeClass = type === 'tech' ? 'badge-dev' : type === 'soft' ? 'badge-mix' : 'badge-mix';
 ---
 
 <div class="card cert-card">
   <div class="cert-header">
     <span class="cert-name">{name}</span>
-    <span class={`badge badge-${type === 'tech' ? 'dev' : 'mix'}`}>{typeLabel}</span>
+    <span class={`badge ${badgeClass}`}>{typeLabel}</span>
   </div>
   <div class="cert-meta">
     <span class="cert-issuer">{issuer}</span>

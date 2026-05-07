@@ -104,86 +104,13 @@ const lendoAgora = leituras.find(l => l.status === 'lendo');
           name={cert.name}
           issuer={cert.issuer}
           date={cert.date}
-          type={cert.type as 'tech' | 'biz'}
+          type={cert.type as 'tech' | 'biz' | 'soft'}
         />
       ))}
     </div>
   </section>
 
-  <hr />
-
-  <!-- Cursos -->
-  <section class="about-section">
-    <span class="section-label">CURSOS QUE RECOMENDO</span>
-    <ul class="cursos-list">
-      {cursos.filter(c => c.recommended).map(curso => (
-        <li class="curso-item">
-          <div class="curso-info">
-            <span class="curso-name">{curso.name}</span>
-            <span class="curso-platform">{curso.platform}</span>
-          </div>
-          <div class="curso-tags">
-            <span class={`badge ${curso.free ? 'badge-dev' : 'badge-mix'}`}>
-              {curso.free ? 'gratuito' : 'pago'}
-            </span>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <hr />
-
-  <!-- Leituras -->
-  <section class="about-section">
-    <span class="section-label">LEITURAS</span>
-
-    {lendoAgora && (
-      <div class="reading-now">
-        <div class="reading-now-header">
-          <span class="badge badge-lendo">lendo agora</span>
-        </div>
-        <div class="reading-now-content">
-          <div>
-            <div class="rn-title">{lendoAgora.title}</div>
-            <div class="rn-author">{lendoAgora.author}</div>
-            {lendoAgora.review && <p class="rn-review">{lendoAgora.review}</p>}
-          </div>
-          {lendoAgora.progress !== null && (
-            <div>
-              <div class="progress-bar">
-                <div class="progress-fill" style={`width: ${lendoAgora.progress}%`}></div>
-              </div>
-              <span class="progress-label">{lendoAgora.progress}% concluído</span>
-            </div>
-          )}
-        </div>
-      </div>
-    )}
-
-    <!-- Filtros -->
-    <div class="books-filters" id="books-filters">
-      <button class="filter-btn active" data-filter="todos">todos</button>
-      <button class="filter-btn" data-filter="lido">lidos</button>
-      <button class="filter-btn" data-filter="lendo">lendo</button>
-      <button class="filter-btn" data-filter="quero">quero ler</button>
-    </div>
-
-    <div class="books-grid" id="books-grid">
-      {leituras.map(livro => (
-        <div class="book-wrapper" data-status={livro.status}>
-          <BookCard
-            title={livro.title}
-            author={livro.author}
-            status={livro.status as 'lido' | 'lendo' | 'quero'}
-            rating={livro.rating}
-            review={livro.review}
-            progress={livro.progress}
-          />
-        </div>
-      ))}
-    </div>
-  </section>
+{/* Cursos e Leituras ocultados temporariamente */}
 
 </Base>
 

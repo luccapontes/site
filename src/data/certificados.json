@@ -1,14 +1,62 @@
 [
   {
-    "name": "AWS Certified Developer",
-    "issuer": "Amazon Web Services",
-    "date": "jan 2024",
+    "name": "Front End",
+    "issuer": "FIAP",
+    "date": "fev/2025",
     "type": "tech"
   },
   {
-    "name": "Inbound Sales Certification",
-    "issuer": "HubSpot Academy",
-    "date": "mai 2024",
-    "type": "biz"
+    "name": "Introduction to Model Context Protocol",
+    "issuer": "Anthropic",
+    "date": "mai/2026",
+    "type": "tech"
+  },
+  {
+    "name": "Model Context Protocol: Advanced Topics",
+    "issuer": "Anthropic",
+    "date": "mai/2026",
+    "type": "tech"
+  },
+  {
+    "name": "Claude Code 101",
+    "issuer": "Anthropic",
+    "date": "abr/2026",
+    "type": "tech"
+  },
+  {
+    "name": "AI Fluency: Framework & Foundations",
+    "issuer": "Anthropic",
+    "date": "abr/2026",
+    "type": "tech"
+  },
+  {
+    "name": "Introduction to Agent Skills",
+    "issuer": "Anthropic",
+    "date": "abr/2026",
+    "type": "tech"
+  },
+  {
+    "name": "Cybersecurity",
+    "issuer": "FIAP",
+    "date": "fev/2024",
+    "type": "tech"
+  },
+  {
+    "name": "Business Management & IT Services",
+    "issuer": "FIAP",
+    "date": "ago/2023",
+    "type": "tech"
+  },
+  {
+    "name": "Leadership Communication",
+    "issuer": "FIAP",
+    "date": "out/2023",
+    "type": "soft"
+  },
+  {
+    "name": "Formação Social e Sustentabilidade",
+    "issuer": "FIAP",
+    "date": "mai/2023",
+    "type": "soft"
   }
 ]
