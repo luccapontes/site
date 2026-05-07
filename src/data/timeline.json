@@ -1,22 +1,27 @@
 [
   {
-    "year": "2019",
-    "title": "Primeiros passos como dev",
-    "description": "Projetos pessoais e freelas, aprendendo na prática."
+    "year": "2017",
+    "title": "Entrada na Alphacode",
+    "description": "Comecei muito jovem no desenvolvimento mobile com Ionic e Angular, aprendendo na prática em projetos reais."
   },
   {
-    "year": "2021",
-    "title": "Dev júnior na software house",
-    "description": "Projetos web para clientes de diferentes segmentos."
+    "year": "2019",
+    "title": "Habib's — primeiro grande projeto",
+    "description": "Desenvolvimento de telas e fluxos mobile para um produto de alto volume de usuários. Primeira experiência em escala."
+  },
+  {
+    "year": "2023",
+    "title": "BookSmart — projeto internacional",
+    "description": "Plataforma educacional com a Worldreader. Reuniões em inglês, coordenação técnica e primeiras experiências próximas de liderança."
   },
   {
     "year": "2024",
-    "title": "Virada: representante comercial",
-    "description": "Transição para vendas. Hoje vendo com a visão de quem construiu cada solução."
+    "title": "Gipay — liderança técnica",
+    "description": "Plataforma bancária white-label com PIX, TED e boletos. Coordenei equipe de 3 devs, lidei diretamente com cliente e documentação de APIs financeiras."
   },
   {
-    "year": "hoje",
-    "title": "Construindo em público",
-    "description": "Escrevendo sobre tech e vendas, compartilhando projetos e aprendizados."
+    "year": "2025",
+    "title": "Transição para representante comercial",
+    "description": "Migrei para o comercial na mesma Alphacode onde construí minha carreira técnica. Vendo software entendendo cada detalhe do que está sendo construído."
   }
 ]

@@ -25,18 +25,21 @@ const proxima = leituras.find(l => l.status === 'quero');
 
   <!-- Hero -->
   <section class="hero">
-    <span class="hero-tag">DESENVOLVEDOR & REPRESENTANTE COMERCIAL</span>
-    <h1 class="hero-title">olá, sou lucca pontes.</h1>
-    <p class="hero-desc">
-      trabalho na interseção entre tecnologia e vendas. fui desenvolvedor por anos e hoje represento
-      a mesma software house onde comecei — entendendo os dois lados do produto.
-    </p>
-    <div class="hero-pills">
-      <span class="pill">software house</span>
-      <span class="pill">desenvolvimento web</span>
-      <span class="pill">vendas b2b</span>
-      <span class="pill">luccapontes.com</span>
+    <div class="hero-content">
+      <span class="hero-tag">DESENVOLVEDOR & REPRESENTANTE COMERCIAL</span>
+      <h1 class="hero-title">olá, sou lucca pontes.</h1>
+      <p class="hero-desc">
+        trabalho na interseção entre tecnologia e vendas. fui desenvolvedor por anos e hoje represento
+        a mesma software house onde comecei — entendendo os dois lados do produto.
+      </p>
+      <div class="hero-pills">
+        <span class="pill">Alphacode</span>
+        <span class="pill">mobile & web</span>
+        <span class="pill">vendas b2b</span>
+        <span class="pill">inglês avançado</span>
+      </div>
     </div>
+    <img src="/images/centralizada.jpeg" alt="Lucca Pontes" class="hero-avatar" />
   </section>
 
   <!-- Blog -->
@@ -108,8 +111,24 @@ const proxima = leituras.find(l => l.status === 'quero');
   .hero {
     padding: 56px 0 48px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .hero-content {
+    display: flex;
     flex-direction: column;
     gap: 16px;
+    flex: 1;
+  }
+  .hero-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 0.5px solid var(--border);
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
   }
   .hero-tag {
     font-size: 11px;
@@ -171,12 +190,14 @@ const proxima = leituras.find(l => l.status === 'quero');
 
   @media (max-width: 720px) {
     .proj-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-avatar { width: 96px; height: 96px; }
   }
 
   @media (max-width: 480px) {
     .proj-grid { grid-template-columns: 1fr; }
     .books-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-title { font-size: 28px; }
+    .hero-avatar { display: none; }
   }
 
   @media (max-width: 420px) {

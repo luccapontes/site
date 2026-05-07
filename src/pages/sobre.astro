@@ -20,17 +20,18 @@ const lendoAgora = leituras.find(l => l.status === 'lendo');
   <section class="about-section">
     <div class="about-grid">
       <div class="avatar-col">
-        <div class="avatar">LP</div>
-        <span class="cargo">dev & representante comercial</span>
+        <img src="/images/centralizada.jpeg" alt="Lucca Pontes" class="avatar-img" />
+        <span class="cargo">representante comercial · Alphacode</span>
       </div>
       <div class="bio-col">
-        <p>Comecei a programar por curiosidade, fiz do hobby uma profissão, e descobri que entender como as coisas são construídas muda completamente a forma de vendê-las.</p>
-        <p>Trabalho na <strong>Alphacode</strong>, uma software house focada em desenvolvimento web e sistemas sob medida. Hoje meu papel é comercial — mas a formação técnica é o que diferencia meu trabalho.</p>
-        <p>Escrevo sobre a interseção entre tecnologia e vendas. Acredito que os melhores representantes comerciais de software do futuro vão ser pessoas que sabem escrever código.</p>
+        <p>Entrei na <strong>Alphacode</strong> em 2017, com 15 anos, e passei quase 7 anos construindo produtos reais — mobile, web, APIs, fintech. Trabalhei em projetos como Habib's, Ragazzo e Gipay, com clientes brasileiros e internacionais.</p>
+        <p>No final de 2025 migrei para o comercial. Hoje represento a mesma empresa onde cresci como dev — e isso muda tudo: consigo falar de arquitetura, prazos e limitações técnicas com o cliente sem depender de intermediário.</p>
+        <p>Acredito que os melhores representantes de software do futuro serão pessoas que entendem o que está sendo construído. Escrevo sobre essa interseção entre tecnologia e vendas.</p>
         <div class="bio-pills">
-          <span class="pill">software house</span>
-          <span class="pill">desenvolvimento web</span>
+          <span class="pill">Alphacode</span>
+          <span class="pill">mobile & web</span>
           <span class="pill">vendas b2b</span>
+          <span class="pill">inglês avançado</span>
         </div>
       </div>
     </div>
@@ -64,27 +65,29 @@ const lendoAgora = leituras.find(l => l.status === 'lendo');
       <div class="skills-col">
         <span class="skills-group-label">DESENVOLVIMENTO</span>
         <ul class="skills-list">
-          <li>JavaScript / TypeScript</li>
-          <li>React</li>
+          <li>TypeScript</li>
+          <li>Angular</li>
+          <li>Ionic</li>
+          <li>React / React Native</li>
           <li>Node.js</li>
-          <li>PostgreSQL / MySQL</li>
-          <li>Astro</li>
-          <li>HTML & CSS</li>
-          <li>Git / GitHub</li>
-          <li>APIs REST</li>
+          <li>PHP</li>
+          <li>HTML / CSS / SCSS</li>
+          <li>MySQL</li>
+          <li>Git / Firebase</li>
+          <li>APIs REST & integrações</li>
         </ul>
       </div>
       <div class="skills-col">
-        <span class="skills-group-label">COMERCIAL</span>
+        <span class="skills-group-label">COMERCIAL & GESTÃO</span>
         <ul class="skills-list">
-          <li>Vendas consultivas</li>
-          <li>Prospecção ativa</li>
-          <li>Gestão de pipeline</li>
-          <li>Qualificação de leads</li>
+          <li>Vendas consultivas B2B</li>
+          <li>Comunicação com clientes</li>
           <li>Propostas comerciais</li>
-          <li>Negociação B2B</li>
-          <li>CRM</li>
-          <li>Inbound sales</li>
+          <li>Coordenação de equipe</li>
+          <li>Planejamento de entregas</li>
+          <li>Documentação técnica</li>
+          <li>Negociação</li>
+          <li>Inglês avançado</li>
         </ul>
       </div>
     </div>
@@ -233,18 +236,14 @@ const lendoAgora = leituras.find(l => l.status === 'lendo');
     gap: 10px;
     text-align: center;
   }
-  .avatar {
+  .avatar-img {
     width: 96px;
     height: 96px;
     border-radius: 50%;
-    background: var(--bg-card);
     border: 0.5px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text-muted);
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
   .cargo {
     font-size: 12px;
