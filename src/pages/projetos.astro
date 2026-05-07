@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projetos = await getCollection('projetos', ({ data }) => data.lang === 'pt');
+const sorted = projetos.sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+---
+
+<Base title="projetos" description="portfólio de projetos técnicos e comerciais.">
+
+  <div class="page-header">
+    <h1 class="page-title">projetos</h1>
+    <p class="page-subtitle">
+      trabalhos técnicos e soluções que construí — com a visão de dev e de quem entende o problema do cliente.
+    </p>
+  </div>
+
+  <div class="proj-grid">
+    {sorted.map(proj => (
+      <ProjectCard
+        title={proj.data.title}
+        year={proj.data.year}
+        type={proj.data.type}
+        description={proj.data.description}
+        tech={proj.data.tech}
+        demo={proj.data.demo}
+        github={proj.data.github}
+        slug={proj.slug}
+      />
+    ))}
+  </div>
+
+</Base>
+
+<style>
+  .page-header {
+    padding: 48px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+</style>

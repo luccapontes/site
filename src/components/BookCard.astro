@@ -1,0 +1,90 @@
+---
+interface Props {
+  title: string;
+  author: string;
+  status: 'lido' | 'lendo' | 'quero';
+  rating?: number | null;
+  review?: string | null;
+  progress?: number | null;
+  dashed?: boolean;
+}
+
+const { title, author, status, rating, review, progress, dashed } = Astro.props;
+
+const statusLabel: Record<string, string> = {
+  lido: 'lido',
+  lendo: 'lendo',
+  quero: 'quero ler',
+};
+
+const badgeClass: Record<string, string> = {
+  lido: 'badge badge-dev',
+  lendo: 'badge badge-lendo',
+  quero: 'badge badge-mix',
+};
+
+function stars(n: number) {
+  return '★'.repeat(n) + '☆'.repeat(5 - n);
+}
+---
+
+<div class={`card book-card ${dashed ? 'dashed' : ''}`}>
+  <div class="book-header">
+    <span class="book-title">{title}</span>
+    <span class={badgeClass[status]}>{statusLabel[status]}</span>
+  </div>
+  <span class="book-author">{author}</span>
+
+  {review && <p class="book-review">{review}</p>}
+
+  {rating && (
+    <span class="stars">{stars(rating)}</span>
+  )}
+
+  {status === 'lendo' && progress !== null && progress !== undefined && (
+    <div>
+      <div class="progress-bar">
+        <div class="progress-fill" style={`width: ${progress}%`}></div>
+      </div>
+      <span class="progress-label">{progress}% concluído</span>
+    </div>
+  )}
+</div>
+
+<style>
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .book-card.dashed {
+    border-style: dashed;
+    opacity: 0.45;
+  }
+  .book-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .book-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .book-author {
+    font-size: 12px;
+    color: var(--text-hint);
+  }
+  .book-review {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .progress-label {
+    font-size: 11px;
+    color: var(--text-hint);
+    margin-top: 4px;
+    display: block;
+  }
+</style>

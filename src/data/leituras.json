@@ -1,0 +1,42 @@
+[
+  {
+    "title": "The Mom Test",
+    "author": "Rob Fitzpatrick",
+    "status": "lido",
+    "rating": 5,
+    "review": "Essencial pra quem vende. Aprendi a fazer as perguntas certas.",
+    "progress": null
+  },
+  {
+    "title": "Never Split the Difference",
+    "author": "Chris Voss",
+    "status": "lendo",
+    "rating": null,
+    "review": "Técnicas de negociação do FBI aplicadas a vendas.",
+    "progress": null
+  },
+  {
+    "title": "Spin Selling",
+    "author": "Neil Rackham",
+    "status": "quero",
+    "rating": null,
+    "review": "Metodologia de vendas consultivas. Muito indicado.",
+    "progress": null
+  },
+  {
+    "title": "Clean Code",
+    "author": "Robert Martin",
+    "status": "lido",
+    "rating": 4,
+    "review": "Mudou como eu escrevo código. Princípios que uso até hoje.",
+    "progress": null
+  },
+  {
+    "title": "Zero to One",
+    "author": "Peter Thiel",
+    "status": "quero",
+    "rating": null,
+    "review": "Sobre como criar empresas que constroem o futuro.",
+    "progress": null
+  }
+]

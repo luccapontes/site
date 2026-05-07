@@ -1,0 +1,452 @@
+---
+import Base from '../layouts/Base.astro';
+import CertCard from '../components/CertCard.astro';
+import BookCard from '../components/BookCard.astro';
+import timeline from '../data/timeline.json';
+import certificados from '../data/certificados.json';
+import cursos from '../data/cursos.json';
+import leituras from '../data/leituras.json';
+
+const lendoAgora = leituras.find(l => l.status === 'lendo');
+---
+
+<Base title="sobre" description="trajetória, habilidades e o que estou lendo agora.">
+
+  <div class="page-header">
+    <h1 class="page-title">sobre</h1>
+  </div>
+
+  <!-- Avatar + Bio -->
+  <section class="about-section">
+    <div class="about-grid">
+      <div class="avatar-col">
+        <div class="avatar">LP</div>
+        <span class="cargo">dev & representante comercial</span>
+      </div>
+      <div class="bio-col">
+        <p>Comecei a programar por curiosidade, fiz do hobby uma profissão, e descobri que entender como as coisas são construídas muda completamente a forma de vendê-las.</p>
+        <p>Trabalho na <strong>Alphacode</strong>, uma software house focada em desenvolvimento web e sistemas sob medida. Hoje meu papel é comercial — mas a formação técnica é o que diferencia meu trabalho.</p>
+        <p>Escrevo sobre a interseção entre tecnologia e vendas. Acredito que os melhores representantes comerciais de software do futuro vão ser pessoas que sabem escrever código.</p>
+        <div class="bio-pills">
+          <span class="pill">software house</span>
+          <span class="pill">desenvolvimento web</span>
+          <span class="pill">vendas b2b</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- Trajetória -->
+  <section class="about-section">
+    <span class="section-label">TRAJETÓRIA</span>
+    <div class="timeline">
+      {timeline.map((item, i) => (
+        <div class="timeline-item">
+          <div class="timeline-year">{item.year}</div>
+          <div class="timeline-content">
+            <div class="timeline-title">{item.title}</div>
+            <div class="timeline-desc">{item.description}</div>
+          </div>
+          {i < timeline.length - 1 && <div class="timeline-line"></div>}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- Habilidades -->
+  <section class="about-section">
+    <span class="section-label">HABILIDADES</span>
+    <div class="skills-grid">
+      <div class="skills-col">
+        <span class="skills-group-label">DESENVOLVIMENTO</span>
+        <ul class="skills-list">
+          <li>JavaScript / TypeScript</li>
+          <li>React</li>
+          <li>Node.js</li>
+          <li>PostgreSQL / MySQL</li>
+          <li>Astro</li>
+          <li>HTML & CSS</li>
+          <li>Git / GitHub</li>
+          <li>APIs REST</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <span class="skills-group-label">COMERCIAL</span>
+        <ul class="skills-list">
+          <li>Vendas consultivas</li>
+          <li>Prospecção ativa</li>
+          <li>Gestão de pipeline</li>
+          <li>Qualificação de leads</li>
+          <li>Propostas comerciais</li>
+          <li>Negociação B2B</li>
+          <li>CRM</li>
+          <li>Inbound sales</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- Certificados -->
+  <section class="about-section">
+    <span class="section-label">CERTIFICADOS</span>
+    <div class="certs-grid">
+      {certificados.map(cert => (
+        <CertCard
+          name={cert.name}
+          issuer={cert.issuer}
+          date={cert.date}
+          type={cert.type as 'tech' | 'biz'}
+        />
+      ))}
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- Cursos -->
+  <section class="about-section">
+    <span class="section-label">CURSOS QUE RECOMENDO</span>
+    <ul class="cursos-list">
+      {cursos.filter(c => c.recommended).map(curso => (
+        <li class="curso-item">
+          <div class="curso-info">
+            <span class="curso-name">{curso.name}</span>
+            <span class="curso-platform">{curso.platform}</span>
+          </div>
+          <div class="curso-tags">
+            <span class={`badge ${curso.free ? 'badge-dev' : 'badge-mix'}`}>
+              {curso.free ? 'gratuito' : 'pago'}
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <hr />
+
+  <!-- Leituras -->
+  <section class="about-section">
+    <span class="section-label">LEITURAS</span>
+
+    {lendoAgora && (
+      <div class="reading-now">
+        <div class="reading-now-header">
+          <span class="badge badge-lendo">lendo agora</span>
+        </div>
+        <div class="reading-now-content">
+          <div>
+            <div class="rn-title">{lendoAgora.title}</div>
+            <div class="rn-author">{lendoAgora.author}</div>
+            {lendoAgora.review && <p class="rn-review">{lendoAgora.review}</p>}
+          </div>
+          {lendoAgora.progress !== null && (
+            <div>
+              <div class="progress-bar">
+                <div class="progress-fill" style={`width: ${lendoAgora.progress}%`}></div>
+              </div>
+              <span class="progress-label">{lendoAgora.progress}% concluído</span>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    <!-- Filtros -->
+    <div class="books-filters" id="books-filters">
+      <button class="filter-btn active" data-filter="todos">todos</button>
+      <button class="filter-btn" data-filter="lido">lidos</button>
+      <button class="filter-btn" data-filter="lendo">lendo</button>
+      <button class="filter-btn" data-filter="quero">quero ler</button>
+    </div>
+
+    <div class="books-grid" id="books-grid">
+      {leituras.map(livro => (
+        <div class="book-wrapper" data-status={livro.status}>
+          <BookCard
+            title={livro.title}
+            author={livro.author}
+            status={livro.status as 'lido' | 'lendo' | 'quero'}
+            rating={livro.rating}
+            review={livro.review}
+            progress={livro.progress}
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Base>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const bookWrappers = document.querySelectorAll<HTMLElement>('.book-wrapper');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter!;
+      bookWrappers.forEach(wrapper => {
+        if (filter === 'todos' || wrapper.dataset.status === filter) {
+          wrapper.style.display = '';
+        } else {
+          wrapper.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .page-header {
+    padding: 48px 0 32px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .about-section {
+    padding: 8px 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .avatar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .cargo {
+    font-size: 12px;
+    color: var(--text-hint);
+    text-align: center;
+  }
+
+  .bio-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .bio-col p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .bio-col strong {
+    color: var(--text-body);
+  }
+  .bio-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 16px;
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    position: relative;
+  }
+  .timeline-year {
+    font-size: 12px;
+    color: var(--text-ghost);
+    padding-top: 2px;
+    text-align: right;
+  }
+  .timeline-content {
+    padding-bottom: 24px;
+    border-left: 0.5px solid var(--border);
+    padding-left: 20px;
+  }
+  .timeline-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .timeline-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 16px;
+  }
+  .skills-group-label {
+    font-size: 11px;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .skills-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .skills-list li {
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  /* Certs */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  /* Cursos */
+  .cursos-list {
+    list-style: none;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .curso-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 0.5px solid var(--border-inner);
+  }
+  .curso-item:last-child {
+    border-bottom: none;
+  }
+  .curso-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .curso-name {
+    font-size: 14px;
+    color: var(--text-body);
+  }
+  .curso-platform {
+    font-size: 12px;
+    color: var(--text-hint);
+  }
+
+  /* Reading now */
+  .reading-now {
+    background: var(--blue-bg);
+    border: 0.5px solid var(--blue-dark);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .rn-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .rn-author {
+    font-size: 12px;
+    color: var(--text-hint);
+    margin-top: 2px;
+  }
+  .rn-review {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .progress-label {
+    font-size: 11px;
+    color: var(--text-hint);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* Books filter */
+  .books-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-size: 12px;
+    color: var(--text-hint);
+    background: transparent;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 4px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .filter-btn:hover,
+  .filter-btn.active {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .books-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .books-grid { grid-template-columns: 1fr; }
+  }
+</style>

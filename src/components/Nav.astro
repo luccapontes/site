@@ -1,0 +1,132 @@
+---
+const currentPath = Astro.url.pathname;
+
+function isActive(path: string) {
+  if (path === '/') return currentPath === '/';
+  return currentPath.startsWith(path);
+}
+---
+
+<nav>
+  <a href="/" class="nav-brand">lucca pontes</a>
+
+  <div class="nav-links">
+    <a href="/sobre"    class={`nav-link ${isActive('/sobre') ? 'active' : ''}`}
+       data-pt="sobre"    data-en="about">sobre</a>
+    <a href="/projetos" class={`nav-link ${isActive('/projetos') ? 'active' : ''}`}
+       data-pt="projetos" data-en="projects">projetos</a>
+    <a href="/blog"     class={`nav-link ${isActive('/blog') ? 'active' : ''}`}
+       data-pt="blog"     data-en="blog">blog</a>
+    <a href="/contato"  class={`nav-link ${isActive('/contato') ? 'active' : ''}`}
+       data-pt="contato"  data-en="contact">contato</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button id="btn-pt" class="lang-btn">PT</button>
+      <span class="lang-sep">|</span>
+      <button id="btn-en" class="lang-btn">EN</button>
+    </div>
+
+    <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+      <span class="toggle-icon">☾</span>
+      <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      <span class="toggle-icon">○</span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  function getLang(): 'pt' | 'en' {
+    const saved = localStorage.getItem('lang') as 'pt' | 'en';
+    if (saved === 'pt' || saved === 'en') return saved;
+    return navigator.language?.toLowerCase().startsWith('pt') ? 'pt' : 'en';
+  }
+
+  function applyLang(lang: 'pt' | 'en') {
+    document.getElementById('btn-pt')?.classList.toggle('active', lang === 'pt');
+    document.getElementById('btn-en')?.classList.toggle('active', lang === 'en');
+    document.querySelectorAll<HTMLElement>('[data-pt][data-en]').forEach(el => {
+      el.textContent = lang === 'en' ? (el.dataset.en ?? '') : (el.dataset.pt ?? '');
+    });
+  }
+
+  function applyTheme(theme: 'dark' | 'light') {
+    document.documentElement.classList.remove('dark', 'light');
+    document.documentElement.classList.add(theme);
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) toggle.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  }
+
+  const lang = getLang();
+  applyLang(lang);
+
+  const theme = (localStorage.getItem('theme') as 'dark' | 'light') ?? 'dark';
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) toggle.dataset.theme = theme;
+
+  document.getElementById('btn-pt')?.addEventListener('click', () => {
+    localStorage.setItem('lang', 'pt');
+    applyLang('pt');
+  });
+  document.getElementById('btn-en')?.addEventListener('click', () => {
+    localStorage.setItem('lang', 'en');
+    applyLang('en');
+  });
+
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    applyTheme(isDark ? 'light' : 'dark');
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 4px 10px;
+    cursor: pointer;
+    color: var(--text-hint);
+    font-family: inherit;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .theme-toggle:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+  .toggle-icon {
+    font-size: 12px;
+    line-height: 1;
+  }
+  .toggle-track {
+    width: 28px;
+    height: 14px;
+    background: var(--border);
+    border-radius: 7px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-hint);
+    transition: transform 0.2s, background 0.2s;
+  }
+  /* thumb à direita = modo claro */
+  .theme-toggle[data-theme="light"] .toggle-thumb {
+    transform: translateX(14px);
+    background: var(--text-primary);
+  }
+  .theme-toggle[data-theme="dark"] .toggle-thumb {
+    transform: translateX(0);
+  }
+</style>

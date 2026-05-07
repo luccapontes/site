@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "sobre": "sobre",
+    "projetos": "projetos",
+    "blog": "blog",
+    "contato": "contato"
+  },
+  "hero": {
+    "tag": "desenvolvedor & representante comercial",
+    "greeting": "olá, sou lucca pontes.",
+    "description": "trabalho na interseção entre tecnologia e vendas. fui desenvolvedor por anos e hoje represento a mesma software house onde comecei — entendendo os dois lados do produto."
+  },
+  "sections": {
+    "blog_latest": "blog — últimas publicações",
+    "projects_selected": "projetos selecionados",
+    "recent_reads": "leituras recentes",
+    "next_read": "próxima leitura",
+    "see_all_posts": "ver todos os posts",
+    "trajectory": "trajetória",
+    "skills": "habilidades",
+    "certificates": "certificados",
+    "recommended_courses": "cursos que recomendo",
+    "reads": "leituras",
+    "reading_now": "lendo agora",
+    "complete": "concluído"
+  },
+  "skills_groups": {
+    "dev": "desenvolvimento",
+    "biz": "comercial"
+  },
+  "blog": {
+    "title": "blog",
+    "subtitle": "pensamentos sobre tecnologia, vendas e construir uma carreira na interseção dos dois.",
+    "filter_all": "todos",
+    "filter_career": "carreira",
+    "filter_sales": "vendas",
+    "filter_tech": "tech",
+    "filter_productivity": "produtividade",
+    "subscribe_label": "receber novos posts por email",
+    "subscribe_btn": "inscrever",
+    "subscribe_placeholder": "seu@email.com",
+    "back": "← voltar para o blog"
+  },
+  "projects": {
+    "title": "projetos",
+    "subtitle": "trabalhos técnicos e soluções que construí — com a visão de dev e de quem entende o problema do cliente.",
+    "demo": "ver demo",
+    "github": "github",
+    "type_dev": "desenvolvimento",
+    "type_mix": "comercial + tech"
+  },
+  "books": {
+    "status_read": "lido",
+    "status_reading": "lendo",
+    "status_want": "quero ler",
+    "filter_all": "todos",
+    "filter_read": "lidos",
+    "filter_reading": "lendo",
+    "filter_want": "quero ler"
+  },
+  "certs": {
+    "type_tech": "tech",
+    "type_biz": "negócios",
+    "free": "gratuito",
+    "paid": "pago",
+    "recommended": "recomendo"
+  },
+  "contact": {
+    "title": "contato",
+    "subtitle": "para projetos, parcerias ou só trocar uma ideia sobre tech e vendas.",
+    "name": "nome",
+    "email": "email",
+    "subject": "assunto",
+    "message": "mensagem",
+    "name_placeholder": "seu nome",
+    "subject_placeholder": "sobre o que é?",
+    "message_placeholder": "me conta mais...",
+    "send": "enviar mensagem",
+    "location_label": "localização",
+    "location_value": "brasil",
+    "availability_label": "disponibilidade",
+    "availability_value": "aberto a projetos freelance e parcerias",
+    "networks": "redes"
+  },
+  "footer": {
+    "rights": "luccapontes.com"
+  }
+}

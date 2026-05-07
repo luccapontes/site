@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="contato" description="para projetos, parcerias ou só trocar uma ideia sobre tech e vendas.">
+
+  <div class="page-header">
+    <h1 class="page-title">contato</h1>
+    <p class="page-subtitle">
+      para projetos, parcerias ou só trocar uma ideia sobre tech e vendas.
+    </p>
+  </div>
+
+  <div class="contact-grid">
+    <!-- Formulário -->
+    <div class="contact-form-col">
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label">nome</label>
+          <input type="text" class="input" placeholder="seu nome" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">email</label>
+          <input type="email" class="input" placeholder="seu@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">assunto</label>
+          <input type="text" class="input" placeholder="sobre o que é?" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">mensagem</label>
+          <textarea class="input textarea" placeholder="me conta mais..." rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn-primary">enviar mensagem</button>
+      </form>
+    </div>
+
+    <!-- Info -->
+    <div class="contact-info-col">
+      <div class="info-block">
+        <span class="info-label">EMAIL</span>
+        <a href="mailto:lucca@alphacode.com.br" class="info-value info-link">
+          lucca@alphacode.com.br
+        </a>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">LOCALIZAÇÃO</span>
+        <span class="info-value">brasil</span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">DISPONIBILIDADE</span>
+        <span class="info-value">Representante Comercial na Alphacode</span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">REDES</span>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/lucca-pontes-157009207/" target="_blank" rel="noopener" class="btn-secondary social-btn">
+            LinkedIn
+          </a>
+          <a href="https://github.com/luccapontes" target="_blank" rel="noopener" class="btn-secondary social-btn">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</Base>
+
+<style>
+  .page-header {
+    padding: 48px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-label {
+    font-size: 12px;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 8px;
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .info-label {
+    font-size: 11px;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .info-value {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .info-link {
+    transition: color 0.15s;
+  }
+  .info-link:hover {
+    color: var(--text-primary);
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .social-btn {
+    display: inline-block;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

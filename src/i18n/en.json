@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "sobre": "about",
+    "projetos": "projects",
+    "blog": "blog",
+    "contato": "contact"
+  },
+  "hero": {
+    "tag": "developer & sales representative",
+    "greeting": "hi, i'm lucca pontes.",
+    "description": "i work at the intersection of technology and sales. i spent years as a developer and now i represent the same software house where i started — understanding both sides of the product."
+  },
+  "sections": {
+    "blog_latest": "blog — latest posts",
+    "projects_selected": "selected projects",
+    "recent_reads": "recent reads",
+    "next_read": "next read",
+    "see_all_posts": "see all posts",
+    "trajectory": "trajectory",
+    "skills": "skills",
+    "certificates": "certificates",
+    "recommended_courses": "recommended courses",
+    "reads": "reads",
+    "reading_now": "reading now",
+    "complete": "complete"
+  },
+  "skills_groups": {
+    "dev": "development",
+    "biz": "business"
+  },
+  "blog": {
+    "title": "blog",
+    "subtitle": "thoughts on technology, sales, and building a career at the intersection of both.",
+    "filter_all": "all",
+    "filter_career": "career",
+    "filter_sales": "sales",
+    "filter_tech": "tech",
+    "filter_productivity": "productivity",
+    "subscribe_label": "get new posts by email",
+    "subscribe_btn": "subscribe",
+    "subscribe_placeholder": "your@email.com",
+    "back": "← back to blog"
+  },
+  "projects": {
+    "title": "projects",
+    "subtitle": "technical work and solutions i built — with the perspective of a dev who understands the client's problem.",
+    "demo": "live demo",
+    "github": "github",
+    "type_dev": "development",
+    "type_mix": "business + tech"
+  },
+  "books": {
+    "status_read": "read",
+    "status_reading": "reading",
+    "status_want": "want to read",
+    "filter_all": "all",
+    "filter_read": "read",
+    "filter_reading": "reading",
+    "filter_want": "want to read"
+  },
+  "certs": {
+    "type_tech": "tech",
+    "type_biz": "business",
+    "free": "free",
+    "paid": "paid",
+    "recommended": "recommended"
+  },
+  "contact": {
+    "title": "contact",
+    "subtitle": "for projects, partnerships, or just a chat about tech and sales.",
+    "name": "name",
+    "email": "email",
+    "subject": "subject",
+    "message": "message",
+    "name_placeholder": "your name",
+    "subject_placeholder": "what's it about?",
+    "message_placeholder": "tell me more...",
+    "send": "send message",
+    "location_label": "location",
+    "location_value": "brazil",
+    "availability_label": "availability",
+    "availability_value": "open to freelance projects and partnerships",
+    "networks": "networks"
+  },
+  "footer": {
+    "rights": "luccapontes.com"
+  }
+}

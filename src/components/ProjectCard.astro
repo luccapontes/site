@@ -1,0 +1,104 @@
+---
+interface Props {
+  title: string;
+  year?: number;
+  type: 'dev' | 'mix';
+  description: string;
+  tech?: string[];
+  demo?: string;
+  github?: string;
+  slug: string;
+}
+
+const { title, year, type, description, tech, demo, github, slug } = Astro.props;
+
+const typeLabel = type === 'dev' ? 'desenvolvimento' : 'comercial + tech';
+---
+
+<div class="card proj-card">
+  <div class="proj-top">
+    <div class="proj-meta">
+      <span class="proj-title">{title}</span>
+      {year && <span class="proj-year">{year}</span>}
+    </div>
+    <span class={`badge badge-${type} proj-badge`}>{typeLabel}</span>
+  </div>
+
+  <p class="proj-desc">{description}</p>
+
+  {tech && tech.length > 0 && (
+    <div class="proj-tech">
+      {tech.map(t => <span class="tech-tag">{t}</span>)}
+    </div>
+  )}
+
+  {(demo || github) && (
+    <div class="proj-links">
+      {demo && <a href={demo} target="_blank" rel="noopener" class="btn-secondary">ver demo</a>}
+      {github && <a href={github} target="_blank" rel="noopener" class="btn-secondary">github</a>}
+    </div>
+  )}
+</div>
+
+<style>
+  .proj-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .proj-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .proj-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+  }
+  .proj-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .proj-year {
+    font-size: 12px;
+    color: var(--text-ghost);
+    flex-shrink: 0;
+  }
+  .proj-badge {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .proj-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .proj-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tech-tag {
+    font-size: 11px;
+    color: var(--text-hint);
+    padding: 2px 7px;
+    border: 0.5px solid var(--border-inner);
+    border-radius: var(--radius-sm);
+  }
+  .proj-links {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .proj-links a {
+    display: inline-block;
+  }
+</style>

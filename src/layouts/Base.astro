@@ -1,0 +1,51 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'lucca pontes',
+  description = 'desenvolvedor e representante comercial. trabalho na interseção entre tecnologia e vendas.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title === 'lucca pontes' ? title : `${title} — lucca pontes`}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Lucca Pontes" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Script anti-flash de tema (deve ser inline e antes do CSS) -->
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.classList.add(theme);
+        if (!saved) localStorage.setItem('theme', theme);
+      })();
+    </script>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://luccapontes.com" />
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

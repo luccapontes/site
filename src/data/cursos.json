@@ -1,0 +1,20 @@
+[
+  {
+    "name": "The Odin Project — Full Stack",
+    "platform": "The Odin Project",
+    "free": true,
+    "recommended": true
+  },
+  {
+    "name": "CS50 — Harvard",
+    "platform": "edX",
+    "free": true,
+    "recommended": true
+  },
+  {
+    "name": "Spin Selling",
+    "platform": "Coursera",
+    "free": false,
+    "recommended": true
+  }
+]

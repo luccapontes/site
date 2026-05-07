@@ -1,0 +1,39 @@
+---
+interface Props {
+  num: number;
+  title: string;
+  date: string;
+  slug: string;
+  category?: string;
+}
+
+const { num, title, date, slug, category } = Astro.props;
+
+function formatDate(d: string) {
+  const dt = new Date(d);
+  return dt.toLocaleDateString('pt-BR', { month: 'short', year: '2-digit' }).replace('.', '');
+}
+---
+
+<a href={`/blog/${slug}`} class="blog-row">
+  <span class="blog-num">{String(num).padStart(2, '0')}</span>
+  <span class="blog-title">{title}</span>
+  {category && <span class="blog-cat">{category}</span>}
+  <span class="blog-date">{formatDate(date)}</span>
+</a>
+
+<style>
+  .blog-cat {
+    font-size: 11px;
+    color: var(--text-ghost);
+    padding: 2px 7px;
+    border: 0.5px solid var(--border-inner);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 560px) {
+    .blog-cat { display: none; }
+  }
+</style>

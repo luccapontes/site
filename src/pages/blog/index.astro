@@ -1,0 +1,151 @@
+---
+import Base from '../../layouts/Base.astro';
+import BlogRow from '../../components/BlogRow.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) =>
+  !data.draft && data.lang === 'pt'
+);
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Base title="blog" description="pensamentos sobre tecnologia, vendas e construir uma carreira na interseção dos dois.">
+
+  <div class="page-header">
+    <h1 class="page-title">blog</h1>
+    <p class="page-subtitle">
+      pensamentos sobre tecnologia, vendas e construir uma carreira na interseção dos dois.
+    </p>
+  </div>
+
+  <!-- Filtros -->
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-cat="todos">todos</button>
+    <button class="filter-btn" data-cat="carreira">carreira</button>
+    <button class="filter-btn" data-cat="vendas">vendas</button>
+    <button class="filter-btn" data-cat="tech">tech</button>
+    <button class="filter-btn" data-cat="produtividade">produtividade</button>
+  </div>
+
+  <!-- Lista de posts -->
+  <div class="blog-list" id="blog-list">
+    {posts.map((post, i) => (
+      <div class="post-wrapper" data-cat={post.data.category}>
+        <BlogRow
+          num={i + 1}
+          title={post.data.title}
+          date={post.data.date.toISOString()}
+          slug={post.slug}
+          category={post.data.category}
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- Newsletter -->
+  <div class="subscribe-block">
+    <span class="subscribe-label">receber novos posts por email</span>
+    <form class="subscribe-form" onsubmit="return false;">
+      <input type="email" class="input" placeholder="seu@email.com" />
+      <button type="submit" class="btn-primary">inscrever</button>
+    </form>
+  </div>
+
+</Base>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const postWrappers = document.querySelectorAll<HTMLElement>('.post-wrapper');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cat = btn.dataset.cat!;
+      postWrappers.forEach(wrapper => {
+        if (cat === 'todos' || wrapper.dataset.cat === cat) {
+          wrapper.style.display = '';
+        } else {
+          wrapper.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .page-header {
+    padding: 48px 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  .filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .filter-btn {
+    font-size: 12px;
+    color: var(--text-hint);
+    background: transparent;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 4px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .filter-btn:hover,
+  .filter-btn.active {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+  }
+
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .subscribe-block {
+    margin-top: 48px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .subscribe-label {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 8px;
+  }
+  .subscribe-form .input {
+    flex: 1;
+  }
+
+  @media (max-width: 560px) {
+    .subscribe-form {
+      flex-direction: column;
+    }
+  }
+</style>
