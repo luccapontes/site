@@ -3,60 +3,70 @@
     "name": "Front End",
     "issuer": "FIAP",
     "date": "fev/2025",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=8db78c18f36e12683ed6332e36d5db41&action=view"
   },
   {
     "name": "Introduction to Model Context Protocol",
     "issuer": "Anthropic",
     "date": "mai/2026",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://verify.skilljar.com/c/pom23m2hd2iw"
   },
   {
     "name": "Model Context Protocol: Advanced Topics",
     "issuer": "Anthropic",
     "date": "mai/2026",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://verify.skilljar.com/c/xbrm7kdbc4nd"
   },
   {
     "name": "Claude Code 101",
     "issuer": "Anthropic",
     "date": "abr/2026",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://verify.skilljar.com/c/ku3kx4sdrsbv"
   },
   {
     "name": "AI Fluency: Framework & Foundations",
     "issuer": "Anthropic",
     "date": "abr/2026",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://verify.skilljar.com/c/zpec8vtmja6a"
   },
   {
     "name": "Introduction to Agent Skills",
     "issuer": "Anthropic",
     "date": "abr/2026",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://verify.skilljar.com/c/5dpfbpnfnh8n"
   },
   {
     "name": "Cybersecurity",
     "issuer": "FIAP",
     "date": "fev/2024",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=f0caa8aac4b73a7817af3493608d50f6&action=view"
   },
   {
     "name": "Business Management & IT Services",
     "issuer": "FIAP",
     "date": "ago/2023",
-    "type": "tech"
+    "type": "tech",
+    "url": "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=a2ed7272452ca046d5658db9bbbda75f&action=view"
   },
   {
     "name": "Leadership Communication",
     "issuer": "FIAP",
     "date": "out/2023",
-    "type": "soft"
+    "type": "soft",
+    "url": "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=8685f246ec613c6723f7f5b9162ff550&action=view"
   },
   {
     "name": "Formação Social e Sustentabilidade",
     "issuer": "FIAP",
     "date": "mai/2023",
-    "type": "soft"
+    "type": "soft",
+    "url": "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=5dc07e9f433f090fc504f282904c1404&action=view"
   }
 ]

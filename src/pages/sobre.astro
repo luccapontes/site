@@ -105,6 +105,7 @@ const lendoAgora = leituras.find(l => l.status === 'lendo');
           issuer={cert.issuer}
           date={cert.date}
           type={cert.type as 'tech' | 'biz' | 'soft'}
+          url={cert.url}
         />
       ))}
     </div>

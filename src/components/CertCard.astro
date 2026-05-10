@@ -4,24 +4,42 @@ interface Props {
   issuer: string;
   date: string;
   type: 'tech' | 'biz' | 'soft';
+  url?: string;
 }
 
-const { name, issuer, date, type } = Astro.props;
+const { name, issuer, date, type, url } = Astro.props;
 
 const typeLabel = type === 'tech' ? 'tech' : type === 'soft' ? 'soft skills' : 'negócios';
 const badgeClass = type === 'tech' ? 'badge-dev' : type === 'soft' ? 'badge-mix' : 'badge-mix';
+const hasLink = url && url.trim() !== '';
 ---
 
-<div class="card cert-card">
-  <div class="cert-header">
-    <span class="cert-name">{name}</span>
-    <span class={`badge ${badgeClass}`}>{typeLabel}</span>
+{hasLink ? (
+  <a href={url} target="_blank" rel="noopener" class="card cert-card cert-card--link">
+    <div class="cert-header">
+      <span class="cert-name">{name}</span>
+      <div class="cert-header-right">
+        <span class={`badge ${badgeClass}`}>{typeLabel}</span>
+        <span class="cert-arrow">↗</span>
+      </div>
+    </div>
+    <div class="cert-meta">
+      <span class="cert-issuer">{issuer}</span>
+      <span class="cert-date">{date}</span>
+    </div>
+  </a>
+) : (
+  <div class="card cert-card">
+    <div class="cert-header">
+      <span class="cert-name">{name}</span>
+      <span class={`badge ${badgeClass}`}>{typeLabel}</span>
+    </div>
+    <div class="cert-meta">
+      <span class="cert-issuer">{issuer}</span>
+      <span class="cert-date">{date}</span>
+    </div>
   </div>
-  <div class="cert-meta">
-    <span class="cert-issuer">{issuer}</span>
-    <span class="cert-date">{date}</span>
-  </div>
-</div>
+)}
 
 <style>
   .cert-card {
@@ -29,16 +47,38 @@ const badgeClass = type === 'tech' ? 'badge-dev' : type === 'soft' ? 'badge-mix'
     flex-direction: column;
     gap: 6px;
   }
+  .cert-card--link {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cert-card--link:hover .cert-name {
+    color: #ffffff;
+  }
   .cert-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 8px;
   }
+  .cert-header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
   .cert-name {
     font-size: 14px;
     font-weight: 500;
     color: var(--text-primary);
+    transition: color 0.15s;
+  }
+  .cert-arrow {
+    font-size: 12px;
+    color: var(--text-hint);
+    transition: color 0.15s;
+  }
+  .cert-card--link:hover .cert-arrow {
+    color: var(--text-muted);
   }
   .cert-meta {
     display: flex;
