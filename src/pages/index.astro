@@ -207,10 +207,29 @@ const proxima = leituras.find(l => l.status === 'quero');
   }
 
   .proj-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: row;
     gap: 12px;
     margin-top: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  .proj-grid::-webkit-scrollbar {
+    height: 3px;
+  }
+  .proj-grid::-webkit-scrollbar-track {
+    background: var(--border-inner);
+    border-radius: 2px;
+  }
+  .proj-grid::-webkit-scrollbar-thumb {
+    background: var(--border-hover);
+    border-radius: 2px;
+  }
+  .proj-grid > :global(*) {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
   }
 
   .books-grid {
@@ -221,12 +240,10 @@ const proxima = leituras.find(l => l.status === 'quero');
   }
 
   @media (max-width: 720px) {
-    .proj-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-avatar { width: 96px; height: 96px; }
   }
 
   @media (max-width: 480px) {
-    .proj-grid { grid-template-columns: 1fr; }
     .books-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-title { font-size: 28px; }
     .hero-avatar { display: none; }
