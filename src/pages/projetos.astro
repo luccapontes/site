@@ -3,21 +3,42 @@ import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
-const projetos = await getCollection('projetos', ({ data }) => data.lang === 'pt');
-const sorted = projetos.sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+const ptProjetos = (await getCollection('projetos', ({ data }) => data.lang === 'pt'))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+
+const enProjetos = (await getCollection('projetos', ({ data }) => data.lang === 'en'))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
 ---
 
 <Base title="projetos" description="portfólio de projetos técnicos e comerciais.">
 
   <div class="page-header">
-    <h1 class="page-title">projetos</h1>
-    <p class="page-subtitle">
+    <h1 class="page-title" data-pt="projetos" data-en="projects">projetos</h1>
+    <p class="page-subtitle" data-lang="pt">
       trabalhos técnicos e soluções que construí — com a visão de dev e de quem entende o problema do cliente.
+    </p>
+    <p class="page-subtitle" data-lang="en">
+      technical work and solutions i built — with the perspective of a dev who understands the client's problem.
     </p>
   </div>
 
-  <div class="proj-grid">
-    {sorted.map(proj => (
+  <div class="proj-grid" data-lang="pt">
+    {ptProjetos.map(proj => (
+      <ProjectCard
+        title={proj.data.title}
+        year={proj.data.year}
+        type={proj.data.type}
+        description={proj.data.description}
+        tech={proj.data.tech}
+        demo={proj.data.demo}
+        github={proj.data.github}
+        slug={proj.slug}
+      />
+    ))}
+  </div>
+
+  <div class="proj-grid" data-lang="en">
+    {enProjetos.map(proj => (
       <ProjectCard
         title={proj.data.title}
         year={proj.data.year}

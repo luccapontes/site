@@ -12,7 +12,8 @@ interface Props {
 
 const { title, year, type, description, tech, demo, github, slug } = Astro.props;
 
-const typeLabel = type === 'dev' ? 'desenvolvimento' : 'comercial + tech';
+const typeLabelPt = type === 'dev' ? 'desenvolvimento' : 'comercial + tech';
+const typeLabelEn = type === 'dev' ? 'development' : 'business + tech';
 ---
 
 <div class="card proj-card">
@@ -21,7 +22,7 @@ const typeLabel = type === 'dev' ? 'desenvolvimento' : 'comercial + tech';
       <span class="proj-title">{title}</span>
       {year && <span class="proj-year">{year}</span>}
     </div>
-    <span class={`badge badge-${type} proj-badge`}>{typeLabel}</span>
+    <span class={`badge badge-${type} proj-badge`} data-pt={typeLabelPt} data-en={typeLabelEn}>{typeLabelPt}</span>
   </div>
 
   <p class="proj-desc">{description}</p>
@@ -34,7 +35,7 @@ const typeLabel = type === 'dev' ? 'desenvolvimento' : 'comercial + tech';
 
   {(demo || github) && (
     <div class="proj-links">
-      {demo && <a href={demo} target="_blank" rel="noopener" class="btn-secondary">ver demo</a>}
+      {demo && <a href={demo} target="_blank" rel="noopener" class="btn-secondary" data-pt="ver demo" data-en="live demo">ver demo</a>}
       {github && <a href={github} target="_blank" rel="noopener" class="btn-secondary">github</a>}
     </div>
   )}

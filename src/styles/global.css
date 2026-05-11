@@ -352,3 +352,9 @@ hr {
   .nav-links { gap: 14px; order: 3; width: 100%; }
   .nav-right { margin-left: auto; }
 }
+
+/* i18n: hide inactive language blocks */
+html[data-lang="pt"] [data-lang="en"],
+html[data-lang="en"] [data-lang="pt"] {
+  display: none !important;
+}

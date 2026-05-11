@@ -2,26 +2,36 @@
   {
     "year": "2017",
     "title": "Entrada na Alphacode",
-    "description": "Comecei muito jovem no desenvolvimento mobile com Ionic e Angular, aprendendo na prática em projetos reais."
+    "description": "Comecei muito jovem no desenvolvimento mobile com Ionic e Angular, aprendendo na prática em projetos reais.",
+    "title_en": "Joined Alphacode",
+    "description_en": "Started very young in mobile development with Ionic and Angular, learning hands-on through real client projects."
   },
   {
     "year": "2019",
     "title": "Habib's — primeiro grande projeto",
-    "description": "Desenvolvimento de telas e fluxos mobile para um produto de alto volume de usuários. Primeira experiência em escala."
+    "description": "Desenvolvimento de telas e fluxos mobile para um produto de alto volume de usuários. Primeira experiência em escala.",
+    "title_en": "Habib's — first major project",
+    "description_en": "Built mobile screens and flows for a high-traffic product. First experience working at scale with a large user base."
   },
   {
     "year": "2023",
     "title": "BookSmart — projeto internacional",
-    "description": "Plataforma educacional com a Worldreader. Reuniões em inglês, coordenação técnica e primeiras experiências próximas de liderança."
+    "description": "Plataforma educacional com a Worldreader. Reuniões em inglês, coordenação técnica e primeiras experiências próximas de liderança.",
+    "title_en": "BookSmart — international project",
+    "description_en": "Educational platform with Worldreader. Meetings in English, technical coordination, and first experiences close to a leadership role."
   },
   {
     "year": "2024",
     "title": "Gipay — liderança técnica",
-    "description": "Plataforma bancária white-label com PIX, TED e boletos. Coordenei equipe de 3 devs, lidei diretamente com cliente e documentação de APIs financeiras."
+    "description": "Plataforma bancária white-label com PIX, TED e boletos. Coordenei equipe de 3 devs, lidei diretamente com cliente e documentação de APIs financeiras.",
+    "title_en": "Gipay — technical lead",
+    "description_en": "White-label banking platform with PIX, TED, and boletos. Led a team of 3 devs, dealt directly with the client, and documented financial APIs."
   },
   {
     "year": "2025",
     "title": "Transição para representante comercial",
-    "description": "Migrei para o comercial na mesma Alphacode onde construí minha carreira técnica. Vendo software entendendo cada detalhe do que está sendo construído."
+    "description": "Migrei para o comercial na mesma Alphacode onde construí minha carreira técnica. Vendo software entendendo cada detalhe do que está sendo construído.",
+    "title_en": "Transition to sales representative",
+    "description_en": "Moved into sales at the same Alphacode where I built my technical career. Selling software with a deep understanding of every detail being built."
   }
 ]

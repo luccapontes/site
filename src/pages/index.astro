@@ -6,16 +6,19 @@ import BookCard from '../components/BookCard.astro';
 import { getCollection } from 'astro:content';
 import leituras from '../data/leituras.json';
 
-const allPosts = await getCollection('blog', ({ data }) =>
-  !data.draft && data.lang === 'pt'
-);
-const featuredPosts = allPosts
+const ptPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'pt'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 5);
 
-const allProjects = await getCollection('projetos', ({ data }) =>
-  data.featured && data.lang === 'pt'
-);
+const enPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5);
+
+const ptProjects = (await getCollection('projetos', ({ data }) => data.featured && data.lang === 'pt'))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+
+const enProjects = (await getCollection('projetos', ({ data }) => data.featured && data.lang === 'en'))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
 
 const lidas = leituras.filter(l => l.status === 'lido').slice(0, 3);
 const proxima = leituras.find(l => l.status === 'quero');
@@ -26,17 +29,21 @@ const proxima = leituras.find(l => l.status === 'quero');
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <span class="hero-tag">DESENVOLVEDOR & REPRESENTANTE COMERCIAL</span>
-      <h1 class="hero-title">olá, sou lucca pontes.</h1>
-      <p class="hero-desc">
+      <span class="hero-tag" data-pt="DESENVOLVEDOR & REPRESENTANTE COMERCIAL" data-en="DEVELOPER & SALES REPRESENTATIVE">DESENVOLVEDOR & REPRESENTANTE COMERCIAL</span>
+      <h1 class="hero-title" data-pt="olá, sou lucca pontes." data-en="hi, i'm lucca pontes.">olá, sou lucca pontes.</h1>
+      <p class="hero-desc" data-lang="pt">
         trabalho na interseção entre tecnologia e vendas. fui desenvolvedor por anos e hoje represento
         a mesma software house onde comecei — entendendo os dois lados do produto.
+      </p>
+      <p class="hero-desc" data-lang="en">
+        i work at the intersection of technology and sales. i spent years as a developer and now i represent
+        the same software house where i started — understanding both sides of the product.
       </p>
       <div class="hero-pills">
         <span class="pill">Alphacode</span>
         <span class="pill">mobile & web</span>
-        <span class="pill">vendas b2b</span>
-        <span class="pill">inglês avançado</span>
+        <span class="pill" data-pt="vendas b2b" data-en="b2b sales">vendas b2b</span>
+        <span class="pill" data-pt="inglês avançado" data-en="advanced english">inglês avançado</span>
       </div>
     </div>
     <img src="/images/centralizada.jpeg" alt="Lucca Pontes" class="hero-avatar" />
@@ -45,11 +52,22 @@ const proxima = leituras.find(l => l.status === 'quero');
   <!-- Blog -->
   <section class="home-section">
     <div class="section-header">
-      <span class="section-label">BLOG — ÚLTIMAS PUBLICAÇÕES</span>
-      <a href="/blog" class="btn-secondary">ver todos os posts</a>
+      <span class="section-label" data-pt="BLOG — ÚLTIMAS PUBLICAÇÕES" data-en="BLOG — LATEST POSTS">BLOG — ÚLTIMAS PUBLICAÇÕES</span>
+      <a href="/blog" class="btn-secondary" data-pt="ver todos os posts" data-en="see all posts">ver todos os posts</a>
     </div>
-    <div class="blog-list">
-      {featuredPosts.map((post, i) => (
+    <div class="blog-list" data-lang="pt">
+      {ptPosts.map((post, i) => (
+        <BlogRow
+          num={i + 1}
+          title={post.data.title}
+          date={post.data.date.toISOString()}
+          slug={post.slug}
+          category={post.data.category}
+        />
+      ))}
+    </div>
+    <div class="blog-list" data-lang="en">
+      {enPosts.map((post, i) => (
         <BlogRow
           num={i + 1}
           title={post.data.title}
@@ -63,9 +81,23 @@ const proxima = leituras.find(l => l.status === 'quero');
 
   <!-- Projetos -->
   <section class="home-section">
-    <span class="section-label">PROJETOS SELECIONADOS</span>
-    <div class="proj-grid">
-      {allProjects.map(proj => (
+    <span class="section-label" data-pt="PROJETOS SELECIONADOS" data-en="SELECTED PROJECTS">PROJETOS SELECIONADOS</span>
+    <div class="proj-grid" data-lang="pt">
+      {ptProjects.map(proj => (
+        <ProjectCard
+          title={proj.data.title}
+          year={proj.data.year}
+          type={proj.data.type}
+          description={proj.data.description}
+          tech={proj.data.tech}
+          demo={proj.data.demo}
+          github={proj.data.github}
+          slug={proj.slug}
+        />
+      ))}
+    </div>
+    <div class="proj-grid" data-lang="en">
+      {enProjects.map(proj => (
         <ProjectCard
           title={proj.data.title}
           year={proj.data.year}
@@ -82,7 +114,7 @@ const proxima = leituras.find(l => l.status === 'quero');
 
   <!-- Leituras -->
   <section class="home-section">
-    <span class="section-label">LEITURAS RECENTES</span>
+    <span class="section-label" data-pt="LEITURAS RECENTES" data-en="RECENT READS">LEITURAS RECENTES</span>
     <div class="books-grid">
       {lidas.map(livro => (
         <BookCard

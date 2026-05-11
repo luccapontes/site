@@ -44,10 +44,15 @@ function isActive(path: string) {
   }
 
   function applyLang(lang: 'pt' | 'en') {
+    document.documentElement.dataset.lang = lang;
     document.getElementById('btn-pt')?.classList.toggle('active', lang === 'pt');
     document.getElementById('btn-en')?.classList.toggle('active', lang === 'en');
     document.querySelectorAll<HTMLElement>('[data-pt][data-en]').forEach(el => {
       el.textContent = lang === 'en' ? (el.dataset.en ?? '') : (el.dataset.pt ?? '');
+    });
+    document.querySelectorAll<HTMLElement>('[data-pt-ph][data-en-ph]').forEach(el => {
+      (el as HTMLInputElement | HTMLTextAreaElement).placeholder =
+        lang === 'en' ? (el.dataset.enPh ?? '') : (el.dataset.ptPh ?? '');
     });
   }
 

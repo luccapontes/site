@@ -3,72 +3,111 @@ import Base from '../../layouts/Base.astro';
 import BlogRow from '../../components/BlogRow.astro';
 import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('blog', ({ data }) =>
-  !data.draft && data.lang === 'pt'
-);
-const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const ptPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'pt'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const enPosts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Base title="blog" description="pensamentos sobre tecnologia, vendas e construir uma carreira na interseção dos dois.">
 
   <div class="page-header">
     <h1 class="page-title">blog</h1>
-    <p class="page-subtitle">
+    <p class="page-subtitle" data-lang="pt">
       pensamentos sobre tecnologia, vendas e construir uma carreira na interseção dos dois.
+    </p>
+    <p class="page-subtitle" data-lang="en">
+      thoughts on technology, sales, and building a career at the intersection of both.
     </p>
   </div>
 
-  <!-- Filtros -->
-  <div class="filters" id="filters">
-    <button class="filter-btn active" data-cat="todos">todos</button>
-    <button class="filter-btn" data-cat="carreira">carreira</button>
-    <button class="filter-btn" data-cat="vendas">vendas</button>
-    <button class="filter-btn" data-cat="tech">tech</button>
-    <button class="filter-btn" data-cat="produtividade">produtividade</button>
+  <!-- PT -->
+  <div data-lang="pt">
+    <div id="filters-pt" class="filters">
+      <button class="filter-btn active" data-cat="todos">todos</button>
+      <button class="filter-btn" data-cat="carreira">carreira</button>
+      <button class="filter-btn" data-cat="vendas">vendas</button>
+      <button class="filter-btn" data-cat="tech">tech</button>
+      <button class="filter-btn" data-cat="produtividade">produtividade</button>
+    </div>
+    <div id="blog-list-pt" class="blog-list">
+      {ptPosts.map((post, i) => (
+        <div class="post-wrapper" data-cat={post.data.category}>
+          <BlogRow
+            num={i + 1}
+            title={post.data.title}
+            date={post.data.date.toISOString()}
+            slug={post.slug}
+            category={post.data.category}
+          />
+        </div>
+      ))}
+    </div>
   </div>
 
-  <!-- Lista de posts -->
-  <div class="blog-list" id="blog-list">
-    {posts.map((post, i) => (
-      <div class="post-wrapper" data-cat={post.data.category}>
-        <BlogRow
-          num={i + 1}
-          title={post.data.title}
-          date={post.data.date.toISOString()}
-          slug={post.slug}
-          category={post.data.category}
-        />
-      </div>
-    ))}
+  <!-- EN -->
+  <div data-lang="en">
+    <div id="filters-en" class="filters">
+      <button class="filter-btn active" data-cat="all">all</button>
+      <button class="filter-btn" data-cat="career">career</button>
+      <button class="filter-btn" data-cat="sales">sales</button>
+      <button class="filter-btn" data-cat="tech">tech</button>
+      <button class="filter-btn" data-cat="productivity">productivity</button>
+    </div>
+    <div id="blog-list-en" class="blog-list">
+      {enPosts.map((post, i) => (
+        <div class="post-wrapper-en" data-cat={post.data.category}>
+          <BlogRow
+            num={i + 1}
+            title={post.data.title}
+            date={post.data.date.toISOString()}
+            slug={post.slug}
+            category={post.data.category}
+          />
+        </div>
+      ))}
+    </div>
   </div>
 
   <!-- Newsletter -->
   <div class="subscribe-block">
-    <span class="subscribe-label">receber novos posts por email</span>
+    <span class="subscribe-label" data-pt="receber novos posts por email" data-en="get new posts by email">receber novos posts por email</span>
     <form class="subscribe-form" onsubmit="return false;">
-      <input type="email" class="input" placeholder="seu@email.com" />
-      <button type="submit" class="btn-primary">inscrever</button>
+      <input
+        type="email"
+        class="input"
+        placeholder="seu@email.com"
+        data-pt-ph="seu@email.com"
+        data-en-ph="your@email.com"
+      />
+      <button type="submit" class="btn-primary" data-pt="inscrever" data-en="subscribe">inscrever</button>
     </form>
   </div>
 
 </Base>
 
 <script>
-  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-  const postWrappers = document.querySelectorAll<HTMLElement>('.post-wrapper');
-
-  filterBtns.forEach(btn => {
+  const filtersPt = document.getElementById('filters-pt');
+  filtersPt?.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      filtersPt.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
       const cat = btn.dataset.cat!;
-      postWrappers.forEach(wrapper => {
-        if (cat === 'todos' || wrapper.dataset.cat === cat) {
-          wrapper.style.display = '';
-        } else {
-          wrapper.style.display = 'none';
-        }
+      document.querySelectorAll<HTMLElement>('#blog-list-pt .post-wrapper').forEach(w => {
+        w.style.display = (cat === 'todos' || w.dataset.cat === cat) ? '' : 'none';
+      });
+    });
+  });
+
+  const filtersEn = document.getElementById('filters-en');
+  filtersEn?.querySelectorAll<HTMLButtonElement>('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtersEn.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat!;
+      document.querySelectorAll<HTMLElement>('#blog-list-en .post-wrapper-en').forEach(w => {
+        w.style.display = (cat === 'all' || w.dataset.cat === cat) ? '' : 'none';
       });
     });
   });

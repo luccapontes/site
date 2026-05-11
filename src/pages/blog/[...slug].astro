@@ -13,15 +13,19 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
+const lang = post.data.lang ?? 'pt';
+const locale = lang === 'en' ? 'en-US' : 'pt-BR';
+const backText = lang === 'en' ? '← back to blog' : '← voltar para o blog';
+
 function formatDate(d: Date) {
-  return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+  return d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
 }
 ---
 
 <Base title={post.data.title} description={post.data.description}>
 
   <div class="article-header">
-    <a href="/blog" class="back-link">← voltar para o blog</a>
+    <a href="/blog" class="back-link">{backText}</a>
     <h1 class="article-title">{post.data.title}</h1>
     <div class="article-meta">
       <span class="article-date">{formatDate(post.data.date)}</span>
@@ -35,7 +39,7 @@ function formatDate(d: Date) {
   </article>
 
   <div class="article-footer">
-    <a href="/blog" class="btn-secondary">← voltar para o blog</a>
+    <a href="/blog" class="btn-secondary">{backText}</a>
   </div>
 
 </Base>

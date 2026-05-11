@@ -9,7 +9,8 @@ interface Props {
 
 const { name, issuer, date, type, url } = Astro.props;
 
-const typeLabel = type === 'tech' ? 'tech' : type === 'soft' ? 'soft skills' : 'negócios';
+const typeLabelPt = type === 'tech' ? 'tech' : type === 'soft' ? 'soft skills' : 'negócios';
+const typeLabelEn = type === 'tech' ? 'tech' : type === 'soft' ? 'soft skills' : 'business';
 const badgeClass = type === 'tech' ? 'badge-dev' : type === 'soft' ? 'badge-mix' : 'badge-mix';
 const hasLink = url && url.trim() !== '';
 ---
@@ -19,7 +20,7 @@ const hasLink = url && url.trim() !== '';
     <div class="cert-header">
       <span class="cert-name">{name}</span>
       <div class="cert-header-right">
-        <span class={`badge ${badgeClass}`}>{typeLabel}</span>
+        <span class={`badge ${badgeClass}`} data-pt={typeLabelPt} data-en={typeLabelEn}>{typeLabelPt}</span>
         <span class="cert-arrow">↗</span>
       </div>
     </div>
@@ -32,7 +33,7 @@ const hasLink = url && url.trim() !== '';
   <div class="card cert-card">
     <div class="cert-header">
       <span class="cert-name">{name}</span>
-      <span class={`badge ${badgeClass}`}>{typeLabel}</span>
+      <span class={`badge ${badgeClass}`} data-pt={typeLabelPt} data-en={typeLabelEn}>{typeLabelPt}</span>
     </div>
     <div class="cert-meta">
       <span class="cert-issuer">{issuer}</span>

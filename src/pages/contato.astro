@@ -5,9 +5,12 @@ import Base from '../layouts/Base.astro';
 <Base title="contato" description="para projetos, parcerias ou só trocar uma ideia sobre tech e vendas.">
 
   <div class="page-header">
-    <h1 class="page-title">contato</h1>
-    <p class="page-subtitle">
+    <h1 class="page-title" data-pt="contato" data-en="contact">contato</h1>
+    <p class="page-subtitle" data-lang="pt">
       para projetos, parcerias ou só trocar uma ideia sobre tech e vendas.
+    </p>
+    <p class="page-subtitle" data-lang="en">
+      for projects, partnerships, or just a chat about tech and sales.
     </p>
   </div>
 
@@ -16,22 +19,35 @@ import Base from '../layouts/Base.astro';
     <div class="contact-form-col">
       <form class="contact-form" onsubmit="return false;">
         <div class="form-group">
-          <label class="form-label">nome</label>
-          <input type="text" class="input" placeholder="seu nome" />
+          <label class="form-label" data-pt="nome" data-en="name">nome</label>
+          <input type="text" class="input"
+            placeholder="seu nome"
+            data-pt-ph="seu nome"
+            data-en-ph="your name" />
         </div>
         <div class="form-group">
           <label class="form-label">email</label>
-          <input type="email" class="input" placeholder="seu@email.com" />
+          <input type="email" class="input"
+            placeholder="seu@email.com"
+            data-pt-ph="seu@email.com"
+            data-en-ph="your@email.com" />
         </div>
         <div class="form-group">
-          <label class="form-label">assunto</label>
-          <input type="text" class="input" placeholder="sobre o que é?" />
+          <label class="form-label" data-pt="assunto" data-en="subject">assunto</label>
+          <input type="text" class="input"
+            placeholder="sobre o que é?"
+            data-pt-ph="sobre o que é?"
+            data-en-ph="what's it about?" />
         </div>
         <div class="form-group">
-          <label class="form-label">mensagem</label>
-          <textarea class="input textarea" placeholder="me conta mais..." rows="5"></textarea>
+          <label class="form-label" data-pt="mensagem" data-en="message">mensagem</label>
+          <textarea class="input textarea"
+            placeholder="me conta mais..."
+            data-pt-ph="me conta mais..."
+            data-en-ph="tell me more..."
+            rows="5"></textarea>
         </div>
-        <button type="submit" class="btn-primary">enviar mensagem</button>
+        <button type="submit" class="btn-primary" data-pt="enviar mensagem" data-en="send message">enviar mensagem</button>
       </form>
     </div>
 
@@ -45,17 +61,17 @@ import Base from '../layouts/Base.astro';
       </div>
 
       <div class="info-block">
-        <span class="info-label">LOCALIZAÇÃO</span>
-        <span class="info-value">brasil</span>
+        <span class="info-label" data-pt="LOCALIZAÇÃO" data-en="LOCATION">LOCALIZAÇÃO</span>
+        <span class="info-value" data-pt="brasil" data-en="brazil">brasil</span>
       </div>
 
       <div class="info-block">
-        <span class="info-label">DISPONIBILIDADE</span>
-        <span class="info-value">Representante Comercial na Alphacode</span>
+        <span class="info-label" data-pt="DISPONIBILIDADE" data-en="AVAILABILITY">DISPONIBILIDADE</span>
+        <span class="info-value" data-pt="Representante Comercial na Alphacode" data-en="Sales Representative at Alphacode">Representante Comercial na Alphacode</span>
       </div>
 
       <div class="info-block">
-        <span class="info-label">REDES</span>
+        <span class="info-label" data-pt="REDES" data-en="NETWORKS">REDES</span>
         <div class="social-links">
           <a href="https://www.linkedin.com/in/lucca-pontes-157009207/" target="_blank" rel="noopener" class="btn-secondary social-btn">
             LinkedIn

@@ -24,14 +24,19 @@ const {
     <meta name="author" content="Lucca Pontes" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Script anti-flash de tema (deve ser inline e antes do CSS) -->
+    <!-- Script anti-flash de tema e idioma (deve ser inline e antes do CSS) -->
     <script is:inline>
       (function() {
-        const saved = localStorage.getItem('theme');
+        const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = saved || (prefersDark ? 'dark' : 'light');
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
         document.documentElement.classList.add(theme);
-        if (!saved) localStorage.setItem('theme', theme);
+        if (!savedTheme) localStorage.setItem('theme', theme);
+
+        const savedLang = localStorage.getItem('lang');
+        const lang = savedLang || (navigator.language?.toLowerCase().startsWith('pt') ? 'pt' : 'en');
+        document.documentElement.dataset.lang = lang;
+        if (!savedLang) localStorage.setItem('lang', lang);
       })();
     </script>
 
