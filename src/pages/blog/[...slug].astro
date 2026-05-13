@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { DynamicIslandTOC } from '../../components/ui/dynamic-island-toc';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -23,6 +24,8 @@ function formatDate(d: Date) {
 ---
 
 <Base title={post.data.title} description={post.data.description}>
+
+  <DynamicIslandTOC client:only="react" lang={lang} />
 
   <div class="article-header">
     <a href="/blog" class="back-link">{backText}</a>
